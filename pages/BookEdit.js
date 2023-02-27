@@ -3,14 +3,23 @@ import { bookService } from '../services/book.service.js'
 export default {
   template: `
         <section class="book-edit">
-            <h2>Add a book</h2>
+            <h2>{{(book.id)? 'Edit' : 'Add'}} a book</h2>
             <form @submit.prevent="save">
-                <input type="text" v-model="book.vendor" placeholder="Vendor">
-                <input type="number" v-model.number="book.maxSpeed">
+                <input type="text" v-model="book.title" placeholder="Title">
+                <span>onSale?</span>
+                <input type="checkbox" id="sale" placeholder="onSale?" v-model="book.listPrice.isOnSale" name="onsale">
                 <button>Save</button>
             </form>
         </section>
     `,
+
+  created() {
+    const { bookId } = this.$route.params
+    if (bookId) {
+      bookService.get(bookId).then(book => (this.book = book))
+    }
+  },
+
   data() {
     return {
       book: bookService.getEmptybook(),
@@ -21,6 +30,7 @@ export default {
       bookService.save(this.book).then(savedbook => {
         this.book = bookService.getEmptybook()
         this.$emit('book-saved', savedbook)
+        this.$router.push('/book')
       })
     },
   },

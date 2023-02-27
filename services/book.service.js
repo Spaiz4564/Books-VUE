@@ -46,8 +46,24 @@ function save(book) {
   }
 }
 
-function getEmptybook(vendor = '', maxSpeed = 0) {
-  return { id: '', vendor, maxSpeed }
+function getEmptybook() {
+  return {
+    id: '',
+    title: 'new book',
+    subtitle: 'mi est eros dapibus himenaeos',
+    authors: ['Barbara Cartland'],
+    publishedDate: 1999,
+    description: 'placerat nisi sodales suscipit tellus',
+    pageCount: 713,
+    categories: ['Computers', 'Hack'],
+    thumbnail: 'http://coding-academy.org/books-photos/16.jpg',
+    language: 'en',
+    listPrice: {
+      amount: 109,
+      currencyCode: 'EUR',
+      isOnSale: false,
+    },
+  }
 }
 
 function _createbooks() {

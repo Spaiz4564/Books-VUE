@@ -1,6 +1,8 @@
 .book-details {
-  display: grid;
-
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px;
   background-color: lightsteelblue;
   margin-block-start: 10px;
@@ -11,4 +13,36 @@
 }
 .book-details button {
   justify-self: end;
+}
+
+.price {
+  padding: 15px;
+  width: 70px;
+  background-color: aliceblue;
+  display: inline;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.img-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.sale {
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  rotate: -35deg;
+  left: -43px;
+  width: 75%;
+  background-color: red;
+  padding: 8px;
+  font-size: 12px;
 }

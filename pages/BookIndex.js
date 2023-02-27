@@ -1,25 +1,18 @@
 import { bookService } from '../services/book.service.js'
 
-import bookFilter from './bookFilter.js'
-import bookList from './bookList.js'
-
-import bookDetails from './bookDetails.js'
-import bookEdit from './bookEdit.js'
+import bookFilter from './../cmps/bookFilter.js'
+import bookList from './../cmps/bookList.js'
 
 export default {
   template: `
         <section class="book-index">
+        <RouterLink to="/book/edit">Add a book</RouterLink>
             <bookFilter @filter="setFilterBy"/>
             <bookList 
-                :books="filteredbooks" 
+                :books="filteredBooks" 
                 v-if="books"
                 @remove="removebook" 
                 @show-details="showbookDetails" />
-            <bookEdit @book-saved="onSavebook"/>
-            <bookDetails 
-                v-if="selectedbook" 
-                @hide-details="selectedbook = null"
-                :book="selectedbook"/>
         </section>
     `,
   data() {
@@ -47,9 +40,16 @@ export default {
     },
   },
   computed: {
-    filteredbooks() {
-      const regex = new RegExp(this.filterBy.vendor, 'i')
-      return this.books.filter(book => regex.test(book.vendor))
+    filteredBooks() {
+      if (!this.filterBy.title && !this.filterBy.price) return this.books
+      const searchStr = this.filterBy.title.toLowerCase()
+      const filteredBooks = this.books.filter(book => {
+        return (
+          book.title.toLowerCase().includes(searchStr) &&
+          book.listPrice.amount >= this.filterBy.price
+        )
+      })
+      return filteredBooks
     },
   },
   created() {
@@ -58,7 +58,5 @@ export default {
   components: {
     bookFilter,
     bookList,
-    bookDetails,
-    bookEdit,
   },
 }

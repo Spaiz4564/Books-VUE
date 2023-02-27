@@ -2,15 +2,20 @@ export default {
   template: `
         <section class="book-filter">
             <input 
-                v-model="filterBy.vendor"
+                v-model="filterBy.title"
                 @input="filter" 
                 placeholder="Search"
                 type="text" />
+                <input 
+                v-model="filterBy.price"
+                @input="filter" 
+                placeholder="Price"
+                type="number" />
         </section>
     `,
   data() {
     return {
-      filterBy: { vendor: '', maxSpeed: 0 },
+      filterBy: { title: '', price: '' },
     }
   },
   methods: {
