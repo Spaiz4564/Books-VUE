@@ -1,13 +1,21 @@
 .book-list ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px;
+  gap: 20px;
 
   padding: 10px;
-  background-color: lightblue;
+  background-color: #f5f1e8;
   list-style-type: none;
 }
 .book-list ul li {
-  padding: 10px;
-  background-color: darkseagreen;
+  box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+  padding: 16px;
+}
+
+.book-preview h2 {
+  font-size: 16px;
+}
+
+li a {
+  font-size: 15px;
 }

@@ -5,19 +5,27 @@ export default {
   props: ['book'],
   template: `
         <section class="book-details" v-if="book">
-            <h1>{{ book.title }}</h1>
-            <h2>{{ book.publishedDate }}</h2>
-            <h3>{{ readType }}</h3>
-            <h3>{{ publishDate }}</h3>
-            <h4 :class="bgColor">{{ book.listPrice.amount }}</h4>
-            <div className="img-container">
+
+          <div className="details">
+          <h1>{{ book.title }}</h1>
+          <h4>Author: {{ book.authors[0] }}</h4>
+          <h4>Categories: {{ displayCategories }}</h4>
+            <h4>Publish date: {{ book.publishedDate }} <span>{{ publishDate }}</span></h4>
+            <h4>Pages: {{ book.pageCount }} <span>{{ readType }}</span></h4>
+            
+            <h5><LongTxt :txt="book.description"  :length="40"/></h5>
+            <h4 :class="bgColor">Price:  {{ book.listPrice.amount }}$</h4>
+          </div>
+
+          <div className="book">
+          <div className="img-container">
               <span class="sale" v-if="book.listPrice.isOnSale">SALE</span>
             <img :src="book.thumbnail" alt="">
-            <RouterLink to="/book">Back to list</RouterLink>
-            </div>
-          <h5><LongTxt :txt="book.description"  :length="40"/></h5>
-            <button @click="closeDetails">Close</button>
+          </div>
+          </div>
+
         </section>
+        <RouterLink class="back-to-list" to="/book">Back to list</RouterLink>
     `,
 
   data() {
@@ -61,6 +69,10 @@ export default {
       if (this.book.listPrice.amount > 150) color += 'red'
       else if (this.book.listPrice.amount < 20) color += 'green'
       return color
+    },
+
+    displayCategories() {
+      return this.book.categories.join(', ')
     },
   },
 

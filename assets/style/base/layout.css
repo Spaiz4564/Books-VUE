@@ -11,7 +11,7 @@
 }
 
 .router-view {
-  min-height: calc(69.7vh);
+  min-height: calc(66.7vh);
 }
 
 .about-page {
@@ -44,8 +44,11 @@
 }
 
 .img-container {
+  max-width: 85%;
   gap: 50px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .img-container img {
