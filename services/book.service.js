@@ -10,6 +10,7 @@ const book_KEY = 'bookDB'
 _createbooks()
 
 export const bookService = {
+  addReview,
   query,
   get,
   remove,
@@ -50,6 +51,7 @@ function getEmptybook() {
   return {
     id: '',
     title: 'new book',
+    reviews: [],
     subtitle: 'mi est eros dapibus himenaeos',
     authors: ['Barbara Cartland'],
     publishedDate: 1999,
@@ -66,6 +68,14 @@ function getEmptybook() {
   }
 }
 
+function addReview(bookId, review) {
+  storageService.get(book_KEY, bookId).then(book => {
+    review.id = utilService.makeId(4)
+    book.reviews.push(review)
+    save(book)
+  })
+}
+
 function _createbooks() {
   let books = utilService.loadFromStorage(book_KEY)
   if (!books || !books.length) {
@@ -74,9 +84,3 @@ function _createbooks() {
     utilService.saveToStorage(book_KEY, books)
   }
 }
-
-// function _createbook(vendor, maxSpeed = 250) {
-//   const book = getEmptybook(vendor, maxSpeed)
-//   book.id = utilService.makeId()
-//   return book
-// }

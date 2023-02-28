@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 30px 20%;
+  padding: 30px 15%;
   background-color: #f5f1e8;
 }
 
@@ -27,8 +27,8 @@
 }
 
 .book-details img {
-  width: 250px;
-  height: 350px;
+  width: 330px;
+  height: 430px;
   justify-self: center;
 }
 
@@ -48,13 +48,27 @@
 }
 
 .back-to-list {
+  display: flex;
+  gap: 9px;
   text-align: center;
-  display: block;
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 .book-details p {
   font-size: 0.65em;
+}
+
+.read-more {
+  margin-top: 15px;
+  text-align: center;
+  display: inline-block;
+  color: #ffffff;
+  padding: 3px 4px 3px 4px;
+  font: 42% 'Oswald', Sans-Serif;
+  background-color: #000000;
+  text-decoration: none;
+  text-transform: uppercase;
+  box-shadow: 4px 4px 0px rgb(33 33 33 / 45%);
 }
 
 .book-details h5 {
@@ -64,6 +78,7 @@
 }
 
 .price {
+  margin-top: 35px;
   display: inline-block;
 
   max-width: 115px;
@@ -126,6 +141,10 @@
 .img-container {
   overflow: hidden;
   position: relative;
+  gap: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sale {
@@ -133,7 +152,7 @@
   position: absolute;
   top: 10px;
   rotate: -35deg;
-  left: -43px;
+  left: -90px;
   width: 75%;
   background-color: red;
   padding: 8px;

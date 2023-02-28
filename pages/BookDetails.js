@@ -1,8 +1,8 @@
 import LongTxt from '../cmps/LongTxt.js'
+import AddReview from '../cmps/AddReview.js'
 import { bookService } from '../services/book.service.js'
 
 export default {
-  props: ['book'],
   template: `
         <section class="book-details" v-if="book">
 
@@ -22,10 +22,23 @@ export default {
               <span class="sale" v-if="book.listPrice.isOnSale">SALE</span>
             <img :src="book.thumbnail" alt="">
           </div>
-          </div>
-
+        </div>    
+        <div className="review-box">
+        <AddReview :book="book" />
+        <RouterLink class="back-to-list" to="/book">Back to list <span style="padding-bottom: 5px;">&#x2192</span></RouterLink> 
+        </div>   
         </section>
-        <RouterLink class="back-to-list" to="/book">Back to list</RouterLink>
+       <div className="reviews">
+        <div class="review" v-for="review in displayReviews">
+          <span @click="removeReview(review.id)" class="remove">X</span>
+          <h3 class="name">{{ review.name }}</h3>
+          <h3 class="rate">{{ displayStars(review.rating) }}</h3>
+          <h3 class="date">{{ review.date }}</h3>
+          
+        </div>
+       </div>
+        
+       
     `,
 
   data() {
@@ -40,8 +53,19 @@ export default {
   },
 
   methods: {
-    closeDetails() {
-      this.$emit('hide-details')
+    displayStars(rate) {
+      console.log(rate)
+      let strHTML = ''
+      for (let i = 0; i < rate; i++) {
+        strHTML += `☆`
+      }
+      return strHTML
+    },
+
+    removeReview(id) {
+      const idx = this.book.reviews.findIndex(r => r.id === id)
+      this.book.reviews.splice(idx, 1)
+      bookService.save(this.book)
     },
   },
 
@@ -74,9 +98,15 @@ export default {
     displayCategories() {
       return this.book.categories.join(', ')
     },
+
+    displayReviews() {
+      if (!this.book) return
+      return this.book.reviews !== [] ? this.book.reviews : ''
+    },
   },
 
   components: {
+    AddReview,
     LongTxt,
   },
 }

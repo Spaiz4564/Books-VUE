@@ -7,7 +7,7 @@ import UserMsg from './cmps/UserMsg.js'
 const options = {
   template: `
         <section class="container">
-            <AppHeader @setRoute="route = $event"/>
+            <AppHeader/>
             <hr />
             <main class="router-view">
             <RouterView />

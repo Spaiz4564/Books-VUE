@@ -8,10 +8,10 @@ export default {
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ratione maiores harum consectetur explicabo cumque sed culpa eveniet, perspiciatis in accusantium nobis repellendus at velit? Molestias ipsam iure voluptatum reprehenderit.</p>
         </section>
         <nav>
-                <RouterLink to="/about/team">Our team</RouterLink> |
-                <RouterLink to="/about/services">Our services</RouterLink> |
+                <!-- <RouterLink to="/about/team">Our team</RouterLink> |
+                <RouterLink to="/about/services">Our services</RouterLink> | -->
             </nav>
-            <hr />
+            <!-- <hr /> -->
             <RouterView />
     `,
 }
