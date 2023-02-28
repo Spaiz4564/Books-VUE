@@ -33,6 +33,7 @@ h1 {
 }
 
 a {
+  font-size: 17px;
   text-decoration: none;
   color: unset;
 }
@@ -44,6 +45,10 @@ embed,
 video,
 object {
   max-width: 100%;
+}
+
+img {
+  width: 100%;
 }
 
 /* Simple and useful CSS Debugging Technique */

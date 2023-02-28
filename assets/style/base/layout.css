@@ -20,6 +20,7 @@
 }
 
 .home-page .img-container {
+  flex-direction: row;
   max-width: 1100px;
 }
 

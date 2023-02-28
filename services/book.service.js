@@ -10,6 +10,8 @@ const book_KEY = 'bookDB'
 _createbooks()
 
 export const bookService = {
+  addGoogleBook,
+  getBooksAPI,
   addReview,
   query,
   get,
@@ -32,7 +34,7 @@ function query(filterBy = {}) {
 }
 
 function get(bookId) {
-  return storageService.get(book_KEY, bookId)
+  return storageService.get(book_KEY, bookId).then(_setNextPrevBookId)
 }
 
 function remove(bookId) {
@@ -69,10 +71,10 @@ function getEmptybook() {
 }
 
 function addReview(bookId, review) {
-  storageService.get(book_KEY, bookId).then(book => {
+  return storageService.get(book_KEY, bookId).then(book => {
     review.id = utilService.makeId(4)
     book.reviews.push(review)
-    save(book)
+    return save(book)
   })
 }
 
@@ -83,4 +85,56 @@ function _createbooks() {
 
     utilService.saveToStorage(book_KEY, books)
   }
+}
+
+function _setNextPrevBookId(book) {
+  return storageService.query(book_KEY).then(books => {
+    const bookIdx = books.findIndex(currbook => currbook.id === book.id)
+    book.nextbookId = books[bookIdx + 1] ? books[bookIdx + 1].id : books[0].id
+    book.prevbookId = books[bookIdx - 1]
+      ? books[bookIdx - 1].id
+      : books[books.length - 1].id
+    return book
+  })
+}
+
+function getBooksAPI(search) {
+  const url = `https://www.googleapis.com/books/v1/volumes?q=${search}`
+  return axios
+    .get(url)
+    .then(res => {
+      return res
+    })
+    .catch(err => {
+      console.log('err: ', err)
+      throw 'Had a problem'
+    })
+}
+
+function addGoogleBook(googleBook) {
+  const book = _createGoogleBook(googleBook)
+  save(book)
+  console.log(book)
+}
+
+function _createGoogleBook(googleBook) {
+  const book = {
+    id: '',
+    title: googleBook.volumeInfo.title,
+    subtitle: googleBook.volumeInfo.subtitle,
+    authors: googleBook.volumeInfo.authors,
+    publishedDate: googleBook.volumeInfo.publishedDate,
+    description: googleBook.searchInfo.textSnippet,
+    pageCount: googleBook.volumeInfo.pageCount,
+    categories: googleBook.volumeInfo.categories,
+    thumbnail: googleBook.volumeInfo.imageLinks.thumbnail,
+    language: googleBook.volumeInfo.language,
+    listPrice: {
+      amount: utilService.getRandomIntInclusive(10, 100),
+      currencyCode: 'USD',
+      isOnSale: false,
+    },
+    reviews: [],
+  }
+  return book
 }

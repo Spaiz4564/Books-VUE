@@ -1,4 +1,13 @@
 .book-filter {
+  display: flex;
   padding: 10px;
+  padding-left: 135px;
   margin-block-start: 10px;
+}
+
+.book-filter input:nth-child(2) {
+  width: 7%;
+}
+.book-filter input:nth-child(1) {
+  width: 25%;
 }

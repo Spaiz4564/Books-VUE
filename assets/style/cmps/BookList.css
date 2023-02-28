@@ -1,21 +1,33 @@
 .book-list ul {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 20px;
-
-  padding: 10px;
-  background-color: #f5f1e8;
+  grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
+  gap: 45px;
+  padding: 50px 135px;
   list-style-type: none;
 }
 .book-list ul li {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  position: relative;
   box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
-  padding: 16px;
+  height: 400px;
+  padding: 3px;
+  width: 300px;
 }
 
-.book-preview h2 {
-  font-size: 16px;
+.book-list h2 {
+  font-size: 0.7em;
 }
 
 li a {
   font-size: 15px;
+}
+
+.list {
+  transition: all 0.3s;
+}
+
+.list:hover {
+  scale: 1.01;
 }

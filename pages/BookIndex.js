@@ -2,12 +2,16 @@ import { bookService } from '../services/book.service.js'
 
 import bookFilter from './../cmps/bookFilter.js'
 import bookList from './../cmps/bookList.js'
+import AddBook from './../pages/AddBook.js'
 import { eventBusService } from '../services/event-bus.service.js'
 
 export default {
   template: `
         <section class="book-index">
+          <div className="add-search-books">
+            <RouterLink class="a-search-book" to="/book/addBook">Search books</RouterLink>
         <RouterLink to="/book/edit">Add a book</RouterLink>
+      </div>
             <bookFilter @filter="setFilterBy"/>
             <bookList 
                 :books="filteredBooks" 
@@ -69,6 +73,7 @@ export default {
     bookService.query().then(books => (this.books = books))
   },
   components: {
+    AddBook,
     bookFilter,
     bookList,
   },

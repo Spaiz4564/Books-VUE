@@ -29,11 +29,20 @@
   opacity: 0.4;
 }
 
+.rate {
+  font-size: 2vw;
+  color: #ffd700;
+  cursor: pointer;
+}
+
 .reviews {
-  margin-top: 40px;
-  padding: 0px 30px;
+  padding: 23px 30px;
   display: flex;
   gap: 2em;
+}
+
+.review h3 {
+  margin: 0;
 }
 
 .review-box {
@@ -48,12 +57,13 @@
 }
 
 .reviews .review {
+  gap: 7px;
   position: relative;
   min-width: 280px;
   justify-content: center;
   display: flex;
   align-items: center;
-  padding: 20px 35px;
+  padding: 15px 35px;
   flex-direction: column;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   border-radius: 30px;

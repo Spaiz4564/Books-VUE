@@ -3,7 +3,7 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  padding: 30px 15%;
+  padding: 55px 15%;
   background-color: #f5f1e8;
 }
 
@@ -59,6 +59,7 @@
 }
 
 .read-more {
+  cursor: pointer;
   margin-top: 15px;
   text-align: center;
   display: inline-block;
@@ -69,6 +70,12 @@
   text-decoration: none;
   text-transform: uppercase;
   box-shadow: 4px 4px 0px rgb(33 33 33 / 45%);
+}
+
+.nav-paging {
+  display: flex;
+  margin-top: 15px;
+  gap: 15px;
 }
 
 .book-details h5 {
@@ -141,7 +148,8 @@
 .img-container {
   overflow: hidden;
   position: relative;
-  gap: 50px;
+  flex-direction: column;
+  gap: 25px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -21,11 +21,17 @@ export default {
           <div className="img-container">
               <span class="sale" v-if="book.listPrice.isOnSale">SALE</span>
             <img :src="book.thumbnail" alt="">
+            <nav class="nav-paging">
+          <RouterLink :to="'/book/' + book.prevbookId">&#x2190 Prev book </RouterLink>
+        <RouterLink :to="'/book/' + book.nextbookId">Next book &#x2192</RouterLink>
+        </nav>
           </div>
         </div>    
         <div className="review-box">
-        <AddReview :book="book" />
+        <AddReview @save-review="saveReview" :book="book" />
         <RouterLink class="back-to-list" to="/book">Back to list <span style="padding-bottom: 5px;">&#x2192</span></RouterLink> 
+       
+       
         </div>   
         </section>
        <div className="reviews">
@@ -48,8 +54,17 @@ export default {
   },
   created() {
     console.log('Params:', this.$route.params)
-    const { bookId } = this.$route.params
-    bookService.get(bookId).then(book => (this.book = book))
+    // const { bookId } = this.$route.params
+    // bookService.get(bookId).then(book => (this.book = book))
+    console.log('BookDetails Params:', this.$route.params)
+    this.loadBook()
+  },
+
+  watch: {
+    bookId() {
+      console.log('BookId Changed!')
+      this.loadBook()
+    },
   },
 
   methods: {
@@ -67,9 +82,24 @@ export default {
       this.book.reviews.splice(idx, 1)
       bookService.save(this.book)
     },
+
+    saveReview(review) {
+      console.log(review)
+      bookService
+        .addReview(this.book.id, { ...review })
+        .then(book => (this.book = book))
+    },
+
+    loadBook() {
+      bookService.get(this.bookId).then(book => (this.book = book))
+    },
   },
 
   computed: {
+    bookId() {
+      return this.$route.params.bookId
+    },
+
     readType() {
       let txt = ''
       if (this.book.pageCount > 500) txt = 'Serious Reading'

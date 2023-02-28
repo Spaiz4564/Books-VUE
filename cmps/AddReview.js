@@ -34,7 +34,7 @@ export default {
 
   methods: {
     saveReview() {
-      bookService.addReview(this.book.id, { ...this.review })
+      this.$emit('save-review', this.review)
     },
   },
 }

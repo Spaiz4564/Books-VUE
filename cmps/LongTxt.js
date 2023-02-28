@@ -2,7 +2,7 @@ export default {
   props: ['txt', 'length'],
   template: `
     <p v-if="isLong === false">{{ subString }}...</p>
-    <p v-else="isLong === true"> {{ txt }}  </p>
+    <p v-else="isLong === true"> {{ txt.substring(0, 150) }}  </p>
     <button class="read-more" @click="isLong = !isLong">{{ isLong ? 'Read Less' : 'Read More' }}</button>
     
     `,

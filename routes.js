@@ -3,6 +3,7 @@ import AboutPage, { AboutTeam, AboutServices } from './pages/AboutPage.js'
 import BookIndex from './pages/BookIndex.js'
 import BookDetails from './pages/BookDetails.js'
 import BookEdit from './pages/BookEdit.js'
+import AddBook from './pages/AddBook.js'
 
 const { createRouter, createWebHashHistory } = VueRouter
 const options = {
@@ -26,6 +27,11 @@ const options = {
         },
       ],
     },
+    {
+      path: '/book/addBook',
+      component: AddBook,
+    },
+
     {
       path: '/book',
       component: BookIndex,

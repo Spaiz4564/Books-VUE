@@ -5,13 +5,13 @@ export default {
   template: `
         <section class="book-list">
             <ul>
-                <li v-for="book in books" :key="book.id">
-                    <bookPreview :book="book"/>
-                    <RouterLink :to="'/book/'+book.id">Details</RouterLink><br />
-                    <RouterLink :to="'/book/edit/'+book.id">Edit</RouterLink> <br />
-                    <button @click="remove(book.id)">x</button>
+                <li class="list" v-for="book in books" :key="book.id">
+                    <bookPreview  :book="book"/>
+            
+                    <i @click="remove(book.id)" class="fa-solid fa-xmark remove-book"></i>
                 </li>
             </ul>
+         
         </section>
     `,
   methods: {
