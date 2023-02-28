@@ -71,10 +71,11 @@ function getEmptybook() {
 }
 
 function addReview(bookId, review) {
+  console.log(bookId)
+  review.id = utilService.makeId(4)
   return storageService.get(book_KEY, bookId).then(book => {
-    review.id = utilService.makeId(4)
     book.reviews.push(review)
-    return save(book)
+    return storageService.put(book_KEY, book)
   })
 }
 

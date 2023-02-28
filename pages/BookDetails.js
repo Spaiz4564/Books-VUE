@@ -28,6 +28,8 @@ export default {
           </div>
         </div>    
         <div className="review-box">
+
+        
         <AddReview @save-review="saveReview" :book="book" />
         <RouterLink class="back-to-list" to="/book">Back to list <span style="padding-bottom: 5px;">&#x2192</span></RouterLink> 
        
@@ -84,10 +86,9 @@ export default {
     },
 
     saveReview(review) {
-      console.log(review)
       bookService
         .addReview(this.book.id, { ...review })
-        .then(book => (this.book = book))
+        .then(() => this.loadBook())
     },
 
     loadBook() {

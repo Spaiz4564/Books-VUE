@@ -56,6 +56,16 @@
   height: 30px;
 }
 
+.select-review {
+  position: absolute;
+  top: -45px;
+  right: 5px;
+}
+
+.rate-number {
+  width: 100px;
+}
+
 .reviews .review {
   gap: 7px;
   position: relative;
@@ -95,6 +105,10 @@
 
 .review .date {
   font-size: 11px;
+}
+
+.review-box .review {
+  position: relative;
 }
 
 .review .name {

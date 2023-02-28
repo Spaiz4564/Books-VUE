@@ -11,6 +11,7 @@ export default {
                 @input="filter" 
                 placeholder="Price"
                 type="number" />
+                
         </section>
     `,
   data() {

@@ -8,11 +8,16 @@ import { eventBusService } from '../services/event-bus.service.js'
 export default {
   template: `
         <section class="book-index">
+          <div className="mashu">
+          <bookFilter @filter="setFilterBy"/>
           <div className="add-search-books">
             <RouterLink class="a-search-book" to="/book/addBook">Search books</RouterLink>
         <RouterLink to="/book/edit">Add a book</RouterLink>
       </div>
-            <bookFilter @filter="setFilterBy"/>
+     
+
+          </div>
+         
             <bookList 
                 :books="filteredBooks" 
                 v-if="books"
